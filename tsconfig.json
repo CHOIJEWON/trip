@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2017", 
+    "module": "commonjs",
+    "outDir": "./dist",	
+    "rootDir": ".",	
+    "strict": true,	
+    "typeRoots": ["@types","./node_modules/@types"],
+    "moduleResolution": "node",	
+    "esModuleInterop": true,
+     "jsx": "react",
+     "resolveJsonModule": true
+  }
+}
