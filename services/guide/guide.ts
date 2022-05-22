@@ -1,17 +1,16 @@
 import Guide from "../../models/guide";
 import { GuideDetails, Guide as GuideKey } from "../../types/guide";
 import ResponseGenerator from "../../utils/response";
-import { errorhandler } from "../../middlewares/errorhandler";
 
 
 export const getGuideList = async() => { 
     const guide: GuideKey[] = await Guide.findAll({})
-    return guide
+    return ResponseGenerator.genSuccess<GuideKey[]>(guide)
 }
 
 export const createGuidePost = async(data : GuideDetails) => { 
     const createGuide = await Guide.create(data)
-    return createGuide
+    return ResponseGenerator.genSuccess<GuideDetails>(createGuide)
 }
 
 export const updateGuidePost = async(key :string, data : GuideDetails) => { 
@@ -20,9 +19,9 @@ export const updateGuidePost = async(key :string, data : GuideDetails) => {
     })
     if(guideKeyFind !== null){
         const response = await guideKeyFind.update(data)
-        return response
+        return ResponseGenerator.genSuccess<GuideKey>(response)
     } else {
-        return null
+        return ResponseGenerator.genfalse(400, '잘못된 요청입니다');
     }
 }
 
@@ -32,9 +31,9 @@ export const deleteGuidePost = async(key : string) => {
     })
 
     if(guideKeyFind !== null) {
-        const response : GuideKey = await guideKeyFind.destroy().then()
-        return response
+        await guideKeyFind.destroy()
+        return ResponseGenerator.genSuccess<Guide>(guideKeyFind)
     } else {
-        return null
+        return ResponseGenerator.genfalse(404, '존재하는 않는 게시물입니다')
     }
 }

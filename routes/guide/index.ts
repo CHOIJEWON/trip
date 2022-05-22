@@ -4,6 +4,10 @@ import { contentDel, contentGet, contentPost, contentPut } from '../../controlle
 import GuideValidator from '../../middlewares/guide/guide';
 import GuideContentValidator from '../../middlewares/guide/guideContent';
 import { errorhandler } from '../../middlewares/errorhandler';
+import { signIn } from '../../controllers/user/user';
+import { verifyToken } from '../../middlewares/user';
+import commentRouter from './comment';
+import reviewRouter from './review';
 
 
 
@@ -17,6 +21,7 @@ router.get(
 
 router.post(
     '/',
+    verifyToken,
     GuideValidator.valTitleUnique(),
     GuideValidator.valCategory(),
     errorhandler,
@@ -68,9 +73,10 @@ errorhandler,
 contentDel
 );
 
-router.get(
-'/content/infor',
-)
+router.use('/review', commentRouter);
+router.use('', reviewRouter);
+
+
 
 
 

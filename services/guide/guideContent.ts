@@ -1,9 +1,13 @@
 import GuideContentModel from "../../models/guideContent"
+import GuideContentImg from "../../models/guideContentImg"
 import GuideContentImgModel from "../../models/guideContentImg"
+import GuideCourseInfor from "../../models/guideCourseInfor"
 import GuideCourseInforModel from "../../models/guideCourseInfor"
 import { GuideContentDetails, GuideContent as GuideContentKey} from "../../types/guide"
 import { GuideImgMainDetails } from "../../types/guideImg"
-import { GuideContentImg, GuideContentImgKey } from "../../types/response/guideContentImg"
+import { GuideContentImgKey } from "../../types/response/guideContentImg"
+import ResponseGenerator from "../../utils/response"
+
 
 
 export const guideContentGet = async() => {
@@ -17,10 +21,10 @@ export const guideContentGet = async() => {
         }
     ]
     })
-    return guideContentFindAll
+    return ResponseGenerator.genSuccess<GuideContentImgKey[]>(guideContentFindAll) 
 }
 
-export const guideContentPost = async(data : GuideContentDetails, dataImg : any, dataCourse : any) => {
+export const guideContentPost = async(data : GuideContentDetails, dataImg : GuideContentImgModel[], dataCourse : GuideCourseInforModel[]) => {
     
     // GuideContentPost
     const GuideContentPost = await GuideContentModel.create(data);
@@ -34,10 +38,10 @@ export const guideContentPost = async(data : GuideContentDetails, dataImg : any,
     await GuideContentPost.addGuideCourseInfors(GuideCourseInforPost)
 
     // return value
-    return GuideContentPost
+    return ResponseGenerator.genSuccess<GuideContentModel>(GuideContentPost)
 }
 
-export const guideContentUpdate = async( data : GuideContentDetails, key : string, dataImg : GuideImgMainDetails[], dataCourse : any ) => {
+export const guideContentUpdate = async( data : GuideContentDetails, key : string, dataImg : GuideImgMainDetails[], dataCourse : GuideCourseInforModel[] ) => {
     const guideContentFindKey : GuideContentModel | null  = await GuideContentModel.findOne({
         where : { id : key},
         include : [
@@ -49,12 +53,8 @@ export const guideContentUpdate = async( data : GuideContentDetails, key : strin
     if(guideContentFindKey !== null){
         
         // exit infor, img delete
-        const guideContentImgsFind =await GuideContentImgModel.findAll({ where : { guideContentId : guideContentFindKey.id }});
-        const guideCourseInforsFind = await GuideCourseInforModel.findAll({ where : { guideContentId : guideContentFindKey.id }});
-    
-        
-        await guideContentFindKey.removeGuideContentImgs(guideContentImgsFind);
-        await guideContentFindKey.removeGuideCourseInfors(guideCourseInforsFind)
+        await GuideCourseInforModel.destroy({where : { guideContentId : guideContentFindKey.id }})
+        await GuideContentImgModel.destroy({where : { guideContentId : guideContentFindKey.id }})
 
         // update and create
         const GuideContentImgPost = await GuideContentImgModel.bulkCreate(dataImg);
@@ -65,14 +65,15 @@ export const guideContentUpdate = async( data : GuideContentDetails, key : strin
         await GuideContentPostUpdate.addGuideContentImgs(GuideContentImgPost);
         await GuideContentPostUpdate.addGuideCourseInfors(GuideCourseInforPost);
 
-        GuideContentPostUpdate.GuideContentImgs = GuideContentImgPost
-        GuideContentPostUpdate.GuideCourseInfors = GuideCourseInforPost
+        // update
+        await GuideContentPostUpdate.reload({include : [GuideContentImg, GuideCourseInfor]})
 
         // return value
-        return GuideContentPostUpdate
+        return ResponseGenerator.genSuccess<GuideContentModel>(GuideContentPostUpdate)
+        
 
     } else {
-        return null
+        return ResponseGenerator.genfalse(400, '업데이트 불가능')
     }
 }
 
@@ -96,9 +97,9 @@ export const guideContentDelete = async(key : string) => {
             where : {guideContentId : guideContentKeyFind.id}
         })
 
-        // return value=[ㅋ]
-        return guideContentKeyFind
+        // return value
+        return ResponseGenerator.genSuccess<GuideContentModel>(guideContentKeyFind)
     } else {
-        return null
+        return ResponseGenerator.genfalse(400, '컨텐츠 삭제 error')
     }
 }

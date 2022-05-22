@@ -6,6 +6,7 @@ class User extends Model {
   id!: string;
   nick !: string;
   role !: string;
+  userId !: string;
   password !: string;
   
   static initialize(sequelize : Sequelize) {
@@ -43,6 +44,12 @@ class User extends Model {
   }
 
   static associate(db : Db) {
+    db.User.hasMany(db.Review, {          
+      foreignKey : 'userId'
+    })
+    db.User.hasMany(db.Comment, {          
+      foreignKey : 'userId'
+    })
   }
 };
 

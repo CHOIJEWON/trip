@@ -6,6 +6,8 @@ import GuideContent from './guideContent'
 import GuideContentImg from './guideContentImg'
 import GuideCourseInfor from './guideCourseInfor'
 import User from './user';
+import Review from './review';
+import Comment from './comment'
 
 const sequelize = new Sequelize(
   config.development.database,
@@ -25,6 +27,8 @@ const db = {
   GuideContentImg : GuideContentImg,
   GuideCourseInfor : GuideCourseInfor,
   User : User,
+  Review : Review,
+  Comment : Comment
 };
 
 
@@ -35,6 +39,8 @@ GuideContent.initialize(sequelize);
 GuideContentImg.initialize(sequelize);
 GuideCourseInfor.initialize(sequelize);
 User.initialize(sequelize);
+Review.initialize(sequelize);
+Comment.initialize(sequelize);
 
 City.associate(db);
 Guide.associate(db);
@@ -42,6 +48,8 @@ GuideContent.associate(db);
 GuideContentImg.associate(db);
 GuideCourseInfor.associate(db);
 User.associate(db);
+Review.associate(db);
+Comment.associate(db);
 
 
 export default db;

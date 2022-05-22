@@ -52,6 +52,10 @@ class Guide extends Model<GuideKey, GuideDetails> implements GuideKey {
         name : 'guideId'
       }
     });
+    db.Guide.hasMany(db.Review, {        
+      foreignKey: 'guideId'
+    })
+
   }
 };
 
