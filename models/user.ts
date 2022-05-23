@@ -24,7 +24,7 @@ class User extends Model {
           allowNull : false,
       },
       userId : {
-          type : DataTypes.TEXT(),
+          type : DataTypes.STRING(),
           allowNull : false,
       },
       role : {

@@ -8,7 +8,7 @@ export const getReviews = async(req : Request, res : Response) => {
 }
 
 export const postReviews = async(req : Request, res : Response) => {
-    const response = await postingReviews(req.body, req.params.id, {decodedUser : req.decodedUser!.id})
+    const response = await postingReviews(req.body, req.params.guideId, {decodedUser : req.decodedUser!.id})
     res.send(response);
 }   
 

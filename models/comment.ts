@@ -6,8 +6,9 @@ class Comment extends Model {
   static initialize(sequelize : Sequelize) {
     return this.init({
       id: {
-        type: DataTypes.STRING(),
+        type: DataTypes.INTEGER(),
         primaryKey: true,
+        autoIncrement: true,
       },
       content: {
         type : DataTypes.STRING(),
@@ -32,9 +33,9 @@ class Comment extends Model {
       db.Comment.belongsTo(db.User, {
           foreignKey : 'userId'
       })
-      db.Comment.belongsTo(db.Comment, {
+      db.Comment.hasMany(db.Comment, {
         as : 'Recomment',
-        foreignKey : 'commentId',
+        foreignKey : 'reCommentId',
       })
   }
 };

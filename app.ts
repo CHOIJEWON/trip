@@ -9,7 +9,7 @@ const app : express.Application = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.urlencoded( { extended: true }));
+app.use(express.urlencoded( { extended: false }));
 
 
 import indexRouter from './routes';

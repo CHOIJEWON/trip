@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import { verifyToken } from '../../middlewares/user';
 import { getReviews, postReviews,  } from '../../controllers/guide/review';
-import { getComments, postComments } from '../../controllers/guide/comment';
+import { delComment, getComments, postComments, updateComment } from '../../controllers/guide/comment';
 
 
 
@@ -18,5 +18,19 @@ router.post(
     verifyToken,
     postComments,
 )
+
+router.put( 
+    '/:reviewId/comment',
+    verifyToken,
+    updateComment,
+)
+
+router.delete( 
+    '/:reviewId/comment',
+    delComment,
+    verifyToken,
+)
+
+
 
 export default router;

@@ -1,5 +1,7 @@
 import {Request, Response, NextFunction} from 'express'
+import User from '../../models/user'
 import { Role } from '../../types/role'
+import { Userkey, decodedUser } from '../../types/response/user'
 
 export const valAdmin = (req : Request, res : Response, next : NextFunction ) => {
     let decodedUser = req.decodedUser

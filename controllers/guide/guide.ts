@@ -17,7 +17,7 @@ export const updateGuide = async (req : Request, res : Response) => {
     res.send(guideUpdate);
 }
 
-export const delGuide = async(req : Request, res : Response) => { //APIParam path에 blank 
+export const delGuide = async(req : Request, res : Response) => { 
     const response = await deleteGuidePost(req.params.id)
     res.send(response)
 }

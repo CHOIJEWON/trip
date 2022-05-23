@@ -1,5 +1,5 @@
 import ReviewModel from "../../models/review"
-import { decodedUser } from "../../types/response/user"
+import { decodedUser, Userkey } from "../../types/response/user"
 import ResponseGenerator from "../../utils/response"
 
 export const guideReviews = async(key : string) => {
@@ -8,8 +8,11 @@ export const guideReviews = async(key : string) => {
 }
 
 export const postingReviews = async(body : ReviewModel, key : string, user : decodedUser) => {
-    const data = {...body, key, user}
-    const review = await ReviewModel.create(data)
+    const review = await ReviewModel.create({
+        ...body,
+        guideId : key,
+        userId : user.decodedUser
+    })
     return ResponseGenerator.genSuccess<ReviewModel>(review)
 }
 
