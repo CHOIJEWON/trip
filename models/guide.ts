@@ -2,6 +2,7 @@ import { DataTypes, Model } from 'sequelize'
 import { Sequelize } from "sequelize/types";
 import Db from '../types/db'
 import {Guide as GuideKey, GuideDetails } from '../types/guide'
+import viewModel from './view';
 
 class Guide extends Model<GuideKey, GuideDetails> implements GuideKey {
   public id!: number
@@ -9,6 +10,7 @@ class Guide extends Model<GuideKey, GuideDetails> implements GuideKey {
   public mainImage!: string
   public content!: string
   public category!: 'mon' | 'cty'
+  public view ?: viewModel
 
 
   static initialize(sequelize : Sequelize) {

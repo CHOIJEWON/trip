@@ -1,4 +1,5 @@
 import Guide from "../../models/guide";
+import viewModel from "../../models/view";
 import { GuideDetails, Guide as GuideKey } from "../../types/guide";
 import ResponseGenerator from "../../utils/response";
 
@@ -8,8 +9,22 @@ export const getGuideList = async() => {
     return ResponseGenerator.genSuccess<GuideKey[]>(guide)
 }
 
+export const guide = async(key : string) => {
+    const guide = await Guide.findOne({
+        where : { id : key },
+        include : {model : viewModel, where : { guideId : key} }
+    })
+    if(guide === null) {
+        return ResponseGenerator.genfalse(500, '데이터가 없습니다')
+    } else {
+        return ResponseGenerator.genSuccess<Guide>(guide)
+    }
+}
+
 export const createGuidePost = async(data : GuideDetails) => { 
     const createGuide = await Guide.create(data)
+    console.log('createGuide.id :', createGuide.id)
+    await viewModel.create({guideId : createGuide.id})
     return ResponseGenerator.genSuccess<GuideDetails>(createGuide)
 }
 

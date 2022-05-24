@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import { delGuide, getGuide, postGuide, updateGuide } from '../../controllers/guide/guide';
+import { delGuide, getGuide, guideOne, postGuide, updateGuide } from '../../controllers/guide/guide';
 import { contentDel, contentGet, contentPost, contentPut } from '../../controllers/guide/guidecontent';
 import GuideValidator from '../../middlewares/guide/guide';
 import GuideContentValidator from '../../middlewares/guide/guideContent';
@@ -9,6 +9,7 @@ import { verifyToken } from '../../middlewares/user';
 import commentRouter from './comment';
 import reviewRouter from './review';
 import recommentRouter from './recomment'
+import { viewPoint } from '../../middlewares/user/view';
 
 
 
@@ -19,6 +20,12 @@ router.get(
     '/', 
     getGuide
 );
+
+router.get(
+    '/:id',
+    viewPoint,
+    guideOne
+)
 
 router.post(
     '/',

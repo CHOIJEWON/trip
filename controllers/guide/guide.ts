@@ -1,9 +1,14 @@
 import { Request, Response } from "express"
-import { createGuidePost, deleteGuidePost, getGuideList, updateGuidePost } from "../../services/guide/guide";
+import { createGuidePost, deleteGuidePost, getGuideList, guide, updateGuidePost } from "../../services/guide/guide";
 
 export const getGuide  = async(req : Request , res : Response) => {
     const guide = await getGuideList();
     res.send(guide)
+}
+
+export const guideOne = async(req : Request , res : Response) => {
+    const response = await guide(req.params.id)
+    res.send(response)
 }
 
 export const postGuide =  async (req : Request, res : Response) => {
