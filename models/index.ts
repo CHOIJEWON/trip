@@ -8,6 +8,7 @@ import GuideCourseInfor from './guideCourseInfor'
 import User from './user';
 import Review from './review';
 import Comment from './comment'
+import View from './view';
 
 const sequelize = new Sequelize(
   config.development.database,
@@ -28,7 +29,8 @@ const db = {
   GuideCourseInfor : GuideCourseInfor,
   User : User,
   Review : Review,
-  Comment : Comment
+  Comment : Comment,
+  View : View
 };
 
 
@@ -41,6 +43,7 @@ GuideCourseInfor.initialize(sequelize);
 User.initialize(sequelize);
 Review.initialize(sequelize);
 Comment.initialize(sequelize);
+View.initialize(sequelize);
 
 City.associate(db);
 Guide.associate(db);
@@ -50,6 +53,7 @@ GuideCourseInfor.associate(db);
 User.associate(db);
 Review.associate(db);
 Comment.associate(db);
+View.associate(db);
 
 
 export default db;

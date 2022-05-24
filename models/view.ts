@@ -2,7 +2,7 @@ import { DataTypes, Model } from 'sequelize'
 import { Sequelize } from "sequelize/types";
 import Db from '../types/db'
 
-class Comment extends Model {
+class View extends Model {
   static initialize(sequelize : Sequelize) {
     return this.init({
       id: {
@@ -10,34 +10,27 @@ class Comment extends Model {
         primaryKey: true,
         autoIncrement: true,
       },
-      content: {
-        type : DataTypes.STRING(),
+      viewPoint: {
+        type : DataTypes.INTEGER(),
+        defaultValue : 0,
         allowNull : false,
       },
     }, {
       sequelize,
       timestamps: true,
       underscored: false,
-      modelName: 'Comment',
-      tableName: 'comments',
+      modelName: 'View',
+      tableName: 'views',
       paranoid: true,
       charset: 'utf8mb4',
       collate: 'utf8mb4_general_ci',
     });
   }
-
   static associate(db : Db) {
-      db.Comment.belongsTo(db.Review, {
-        foreignKey: 'reviewId'
-      })
-      db.Comment.belongsTo(db.User, {
-          foreignKey : 'userId'
-      })
-      db.Comment.hasMany(db.Comment, {
-        as : 'Recomment',
-        foreignKey : 'commentId',
+      db.Comment.belongsTo(db.Guide, {
+        foreignKey : 'guideId',
       })
   }
 };
 
-export default Comment
+export default View

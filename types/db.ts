@@ -7,6 +7,7 @@ import GuideContentImg from '../models/guideContentImg';
 import Review from "../models/review";
 import User from "../models/user";
 import Comment from '../models/comment'
+import View from '../models/view'
 
 
 
@@ -17,9 +18,10 @@ interface Db {
     GuideContent : typeof GuideContent;
     GuideCourseInfor : typeof GuideCourseInfor;
     GuideContentImg : typeof GuideContentImg;
-    Review : typeof Review
-    User : typeof User
-    Comment : typeof Comment
+    Review : typeof Review;
+    User : typeof User;
+    Comment : typeof Comment;
+    View : typeof View;
 }
 
 export default Db;

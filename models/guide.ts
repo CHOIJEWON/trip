@@ -55,7 +55,9 @@ class Guide extends Model<GuideKey, GuideDetails> implements GuideKey {
     db.Guide.hasMany(db.Review, {        
       foreignKey: 'guideId'
     })
-
+    db.Guide.hasOne(db.View, {
+      foreignKey: 'guideId'
+    })
   }
 };
 

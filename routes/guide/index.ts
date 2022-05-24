@@ -8,6 +8,7 @@ import { signIn } from '../../controllers/user/user';
 import { verifyToken } from '../../middlewares/user';
 import commentRouter from './comment';
 import reviewRouter from './review';
+import recommentRouter from './recomment'
 
 
 
@@ -75,7 +76,7 @@ contentDel
 
 router.use('/review', commentRouter);
 router.use('', reviewRouter);
-
+router.use('/review', recommentRouter);
 
 
 

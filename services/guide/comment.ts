@@ -4,7 +4,10 @@ import ResponseGenerator from "../../utils/response"
 
 export const getAllComment = async(key : string) => {
     const comments = await commentModel.findAll({
-        where : { reviewId : key },
+        where : [{ 
+            reviewId : key,
+            commentId : null,
+        }],
         include : [
             {
             model : commentModel,
