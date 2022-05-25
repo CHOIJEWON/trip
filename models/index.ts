@@ -9,6 +9,7 @@ import User from './user';
 import Review from './review';
 import Comment from './comment'
 import View from './view';
+import Like from './like';
 
 const sequelize = new Sequelize(
   config.development.database,
@@ -30,7 +31,8 @@ const db = {
   User : User,
   Review : Review,
   Comment : Comment,
-  View : View
+  View : View,
+  Like : Like,
 };
 
 
@@ -44,6 +46,7 @@ User.initialize(sequelize);
 Review.initialize(sequelize);
 Comment.initialize(sequelize);
 View.initialize(sequelize);
+Like.initialize(sequelize);
 
 City.associate(db);
 Guide.associate(db);
@@ -54,6 +57,7 @@ User.associate(db);
 Review.associate(db);
 Comment.associate(db);
 View.associate(db);
+Like.associate(db);
 
 
 export default db;

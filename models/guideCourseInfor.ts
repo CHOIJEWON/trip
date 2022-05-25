@@ -19,10 +19,10 @@ class GuideCourseInfor extends Model<GuideCourseInforKey, GuideCourseInforDetail
 
   static initialize(sequelize : Sequelize,) {
     return this.init({
-      id : {
-        type : DataTypes.INTEGER(), 
-        primaryKey : true, 
-        autoIncrement : true,
+      id: {
+        type: DataTypes.INTEGER(),
+        primaryKey: true,
+        autoIncrement: true,
       },
       latitude: {
         type : DataTypes.STRING(10),
@@ -41,11 +41,11 @@ class GuideCourseInfor extends Model<GuideCourseInforKey, GuideCourseInforDetail
           allowNull : false,
       }, 
       sequence: { 
-          type : DataTypes.INTEGER,
+          type : DataTypes.INTEGER(),
           allowNull : false,
       }, 
       visitTime : {
-          type : DataTypes.INTEGER,
+          type : DataTypes.INTEGER(),
           allowNull : false,
       }
     }, {
@@ -62,11 +62,11 @@ class GuideCourseInfor extends Model<GuideCourseInforKey, GuideCourseInforDetail
 
   static associate(db : Db) {
     db.GuideCourseInfor.belongsTo(db.City, {
-      foreignKey : 'guideCourseInfroId'
+      foreignKey : 'cityId'
     });
-    db.GuideCourseInfor.belongsTo(db.GuideContent , {
+    db.GuideCourseInfor.belongsTo(db.GuideContent, {
       foreignKey : 'guideContentId'
-    });
+    })
   }
 };
 

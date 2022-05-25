@@ -26,6 +26,7 @@ export const guideContentGet = async() => {
 
 export const guideContentPost = async(data : GuideContentDetails, dataImg : GuideContentImgModel[], dataCourse : GuideCourseInforModel[]) => {
     
+    console.log(data, dataImg, dataCourse)
     // GuideContentPost
     const GuideContentPost = await GuideContentModel.create(data);
 
@@ -57,9 +58,10 @@ export const guideContentUpdate = async( data : GuideContentDetails, key : strin
         await GuideContentImgModel.destroy({where : { guideContentId : guideContentFindKey.id }})
 
         // update and create
+        const GuideContentPostUpdate  = await guideContentFindKey.update(data)
         const GuideContentImgPost = await GuideContentImgModel.bulkCreate(dataImg);
         const GuideCourseInforPost = await GuideCourseInforModel.bulkCreate(dataCourse)
-        const GuideContentPostUpdate  = await guideContentFindKey.update(data)
+        
         
         // add model
         await GuideContentPostUpdate.addGuideContentImgs(GuideContentImgPost);

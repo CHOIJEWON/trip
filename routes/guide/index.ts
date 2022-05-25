@@ -10,7 +10,7 @@ import commentRouter from './comment';
 import reviewRouter from './review';
 import recommentRouter from './recomment'
 import { viewPoint } from '../../middlewares/user/view';
-
+// import guideContentRouter from './guideContent'
 
 
 const router = Router();
@@ -52,39 +52,40 @@ router.delete(
     )
 
 // content router
+
 router.get(
-'/content',
-GuideContentValidator.valGuideContentBlankData(),
-errorhandler,
-contentGet
-);
-
-router.post('/content', 
-GuideContentValidator.valGuideContentTitleBlank(),
-GuideContentValidator.valGuideContentContentBlank(),
-errorhandler,
-contentPost
-);
-
-router.put(
-'/content/:id', 
-GuideContentValidator.valGuideContentExist(), 
-errorhandler,
-contentPut
-);
-
-
-router.delete(
-'/content/:id', 
-GuideContentValidator.valGuideContentExist(), 
-errorhandler,
-contentDel
-);
+    '/content',
+    GuideContentValidator.valGuideContentBlankData(),
+    errorhandler,
+    contentGet
+    );
+    
+    router.post('/content', 
+    GuideContentValidator.valGuideContentTitleBlank(),
+    GuideContentValidator.valGuideContentContentBlank(),
+    errorhandler,
+    contentPost
+    );
+    
+    router.put(
+    '/content/:id', 
+    GuideContentValidator.valGuideContentExist(), 
+    errorhandler,
+    contentPut
+    );
+    
+    
+    router.delete(
+    '/content/:id', 
+    GuideContentValidator.valGuideContentExist(), 
+    errorhandler,
+    contentDel
+    );
 
 router.use('/review', commentRouter);
 router.use('', reviewRouter);
 router.use('/review', recommentRouter);
-
+// router.use('', guideContentRouter)
 
 
 

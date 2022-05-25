@@ -60,6 +60,9 @@ class Guide extends Model<GuideKey, GuideDetails> implements GuideKey {
     db.Guide.hasOne(db.View, {
       foreignKey: 'guideId'
     })
+    db.Guide.hasMany(db.Like, {
+      foreignKey: 'guideId'
+    })
   }
 };
 
