@@ -21,6 +21,7 @@ export const guideContentGet = async() => {
         }
     ]
     })
+    console.log('guideContentGet')
     return ResponseGenerator.genSuccess<GuideContentImgKey[]>(guideContentFindAll) 
 }
 
@@ -35,8 +36,11 @@ export const guideContentPost = async(data : GuideContentDetails, dataImg : Guid
     await GuideContentPost.addGuideContentImgs(GuideContentImgPost);
 
     // GuideCourseInfor bulkCreate
-    const GuideCourseInforPost = await GuideCourseInforModel.bulkCreate(dataCourse)
-    await GuideContentPost.addGuideCourseInfors(GuideCourseInforPost)
+    const guideCourseInforPost = await GuideCourseInforModel.bulkCreate(dataCourse)
+    await GuideContentPost.addGuideCourseInfors(guideCourseInforPost)
+    
+    
+   
 
     // return value
     return ResponseGenerator.genSuccess<GuideContentModel>(GuideContentPost)
@@ -58,10 +62,9 @@ export const guideContentUpdate = async( data : GuideContentDetails, key : strin
         await GuideContentImgModel.destroy({where : { guideContentId : guideContentFindKey.id }})
 
         // update and create
-        const GuideContentPostUpdate  = await guideContentFindKey.update(data)
         const GuideContentImgPost = await GuideContentImgModel.bulkCreate(dataImg);
         const GuideCourseInforPost = await GuideCourseInforModel.bulkCreate(dataCourse)
-        
+        const GuideContentPostUpdate  = await guideContentFindKey.update(data)
         
         // add model
         await GuideContentPostUpdate.addGuideContentImgs(GuideContentImgPost);

@@ -50,6 +50,12 @@ class User extends Model {
     db.User.hasMany(db.Comment, {          
       foreignKey : 'userId'
     })
+    db.User.hasMany(db.Like, {
+      foreignKey : 'userId'
+    })
+    db.User.hasMany(db.Guide, {
+      foreignKey : 'userId'
+    })
   }
 };
 

@@ -1,7 +1,8 @@
-import { DataTypes, Model } from 'sequelize'
+import { DataTypes, ForeignKey, Model } from 'sequelize'
 import { Sequelize } from "sequelize/types";
 import Db from '../types/db'
 import {Guide as GuideKey, GuideDetails } from '../types/guide'
+import User from './user';
 import viewModel from './view';
 
 class Guide extends Model<GuideKey, GuideDetails> implements GuideKey {
@@ -11,7 +12,9 @@ class Guide extends Model<GuideKey, GuideDetails> implements GuideKey {
   public content!: string
   public category!: 'mon' | 'cty'
   public view ?: viewModel
-
+  public likePoint !: number
+  public disLikePoint !: number
+  public userId!: ForeignKey<User['id']>  // foreignKey setting
 
   static initialize(sequelize : Sequelize) {
     return this.init({
@@ -35,6 +38,16 @@ class Guide extends Model<GuideKey, GuideDetails> implements GuideKey {
       category : {
           type : DataTypes.STRING(10),
           allowNull : false,
+      },
+      likePoint : {
+        type : DataTypes.INTEGER(),
+        allowNull : false,
+        defaultValue : 0,
+      },
+      disLikePoint : {
+        type : DataTypes.INTEGER(),
+        allowNull : false,
+        defaultValue : 0,
       }
     }, {
       sequelize,
@@ -62,6 +75,9 @@ class Guide extends Model<GuideKey, GuideDetails> implements GuideKey {
     })
     db.Guide.hasMany(db.Like, {
       foreignKey: 'guideId'
+    })
+    db.Guide.belongsTo(db.User, {
+      foreignKey: 'userId'
     })
   }
 };

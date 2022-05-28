@@ -10,6 +10,11 @@ const basic = {
         url: "web.com", // your website
       },
     },
+    security : [
+      {
+      basicAuth : []
+    }
+  ]
   };
   
 export default basic;

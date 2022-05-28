@@ -1,5 +1,6 @@
 import { ForeignKey } from "sequelize/types";
 import GuideModel from '../models/guide'
+import User from "../models/user";
 import { GuideImgDetails } from "./guideImg";
 
 export const ALL_GUIDE_CATEGORY = ['mon', 'cty'] as const;
@@ -19,6 +20,8 @@ export interface GuideDetails {
     content : string;
     
     category : GuideCategory;
+
+    userId: ForeignKey<User['id']>
 }
 
 export interface GuideContentDetails {
@@ -31,7 +34,11 @@ export interface GuideContentDetails {
     guideId : ForeignKey<GuideModel['id']>;
 }
 
-export type Guide = GuideDetails & {id : number}
+export type Guide = GuideDetails & {
+    id : number;
+    likePoint : number;
+    disLikePoint : number;
+}
 
 export type GuideContent = GuideContentDetails & {id : number}
 

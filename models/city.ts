@@ -37,7 +37,7 @@ class City extends Model{
 
   static associate(db : Db) {
     db.City.hasMany(db.GuideCourseInfor, {
-      foreignKey : 'guideCourseId'
+      foreignKey : 'cityId'
     } )
   };
 };

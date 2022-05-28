@@ -3,6 +3,9 @@ import { Sequelize } from "sequelize/types";
 import Db from '../types/db'
 
 class Like extends Model {
+
+  isLike !: boolean
+
   static initialize(sequelize : Sequelize) {
     return this.init({
       id: {
@@ -10,16 +13,11 @@ class Like extends Model {
         primaryKey: true,
         autoIncrement: true,
       },
-      likePoint: {
-        type : DataTypes.INTEGER(),
-        defaultValue : 0,
+      isLike : {
+        type : DataTypes.BOOLEAN(),
+        defaultValue : false,
         allowNull : false,
       },
-      isLike : {
-          type : DataTypes.BOOLEAN(),
-          defaultValue : false,
-          allowNull : false,
-      }
     }, {
       sequelize,
       timestamps: true,
@@ -32,8 +30,8 @@ class Like extends Model {
     });
   }
   static associate(db : Db) {
-      db.Like.hasMany(db.User, {
-        foreignKey : 'likeId',
+      db.Like.belongsTo(db.User, {
+        foreignKey : 'userId',
       })
       db.Like.belongsTo(db.Guide, {
         foreignKey : 'guideId',

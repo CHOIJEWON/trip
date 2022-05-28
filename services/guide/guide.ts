@@ -1,6 +1,7 @@
 import Guide from "../../models/guide";
 import viewModel from "../../models/view";
 import { GuideDetails, Guide as GuideKey } from "../../types/guide";
+import { decodedUser } from "../../types/response/user";
 import ResponseGenerator from "../../utils/response";
 
 
@@ -21,10 +22,13 @@ export const guide = async(key : string) => {
     }
 }
 
-export const createGuidePost = async(data : GuideDetails) => { 
-    const createGuide = await Guide.create(data)
-    console.log('createGuide.id :', createGuide.id)
+export const createGuidePost = async(data : GuideDetails, user : decodedUser) => { 
+    const createGuide = await Guide.create({
+        ...data,
+        userId : user.decodedUser
+    })
     await viewModel.create({guideId : createGuide.id})
+
     return ResponseGenerator.genSuccess<GuideDetails>(createGuide)
 }
 

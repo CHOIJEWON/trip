@@ -1,11 +1,16 @@
+import { Op } from "sequelize/types"
+import commentModel from "../../models/comment"
 import ReviewModel from "../../models/review"
 import { decodedUser, Userkey } from "../../types/response/user"
 import ResponseGenerator from "../../utils/response"
 
 export const guideReviews = async(key : string) => {
-    const review = await ReviewModel.findAll({ where : { guideId : key } })
+    const review = await ReviewModel.findAll({ 
+        where : { guideId : key  }
+    })
     return ResponseGenerator.genSuccess<ReviewModel[]>(review)
 }
+
 
 export const postingReviews = async(body : ReviewModel, key : string, user : decodedUser) => {
     const review = await ReviewModel.create({

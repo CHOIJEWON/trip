@@ -1,9 +1,15 @@
 import basciInfo from './basciInfo';
-import guide from './guide';
+import components from './components';
+import paths from './paths';
+import server from './server';
+import tags from './tags';
 
 const docs = {
   ...basciInfo,
-  paths : {...guide},
+  ...paths,
+  ...server,
+  ...tags,
+  ...components
 }
 
 export default docs;

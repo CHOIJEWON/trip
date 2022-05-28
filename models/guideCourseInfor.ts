@@ -6,15 +6,13 @@ import GuideContentModel from './guideContent';
 
 
 class GuideCourseInfor extends Model<GuideCourseInforKey, GuideCourseInforDetails>implements GuideCourseInforKey {
-  
-  
+  id !: number;
   latitude !: string;
   longitude !: string;
   title !: string;
   category !: string;
   sequence !: number;
   visitTime !: number;
-  id !: number;
   guideContentId !: ForeignKey<GuideContentModel['id']>
 
   static initialize(sequelize : Sequelize,) {

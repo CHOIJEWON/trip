@@ -12,7 +12,7 @@ export const guideOne = async(req : Request , res : Response) => {
 }
 
 export const postGuide =  async (req : Request, res : Response) => {
-    const guideCreate = await createGuidePost(req.body)
+    const guideCreate = await createGuidePost(req.body, {decodedUser : req.decodedUser!.id})
     res.send(guideCreate)
 };
 
