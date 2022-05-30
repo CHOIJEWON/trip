@@ -7,13 +7,13 @@ import { verifyToken } from '../../middlewares/user';
 const router = Router();
 
 router.get(
-    '/content',
+    '/content/:id',
     GuideContentValidator.valGuideContentBlankData(),
     errorhandler,
     contentGet
     );
     
-    router.post('/content', 
+    router.post('/content/:id', 
     GuideContentValidator.valGuideContentTitleBlank(),
     GuideContentValidator.valGuideContentContentBlank(),
     errorhandler,

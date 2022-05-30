@@ -4,8 +4,8 @@ import { makeFalseResponse, makeResponse } from "../response";
 
 const guideGetDetail =  {
       get: {
-        tags : ["가이드 API"],
-        description: "가이드 상세 GET",
+        tags : ["Guide API"],
+        description: "Guide findOne",
         parameters: [
             {
                 name : "guideId",
@@ -19,7 +19,7 @@ const guideGetDetail =  {
         ],
         responses: {
           200: {          
-            description: "해당 가이드 GET",
+            description: "Guide findOne Response Example",
             content: {
               "application/json": {
                 schema: {
@@ -30,7 +30,7 @@ const guideGetDetail =  {
             }
           },
           400: {          
-            description: "A list of guides.",
+            description: " error ",
             content: {
               "application/json": {
                 schema: {

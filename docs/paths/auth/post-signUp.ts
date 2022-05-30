@@ -2,27 +2,27 @@
 
 import { makeFalseResponse, makeResponse } from "../response";
 
-const guidePost =  {
+const createUser =  {
       post: {
-        tags : ["Guide API"],
-        description: "Guide POST",
+        tags : ["User API"],
+        description: "User SignUP",
         requestBody : {
             content : {
                 "application/json": {
                     schema: {
-                      $ref : "#/components/schemas/createGuide"
+                      $ref : "#/components/schemas/createUser"
                     }
                 }
             }
         },
         responses: {
           200: {          
-            description: "Guide Post Response Example",
+            description: "User SignUp Response example",
             content: {
               "application/json": {
                 schema: {
                   type: "object",
-                  properties: makeResponse("#/components/schemas/guide")
+                  properties: makeResponse("#/components/schemas/signUp")
                 }
               }
             }
@@ -32,7 +32,7 @@ const guidePost =  {
             content: {
               "application/json": {
                 schema: {
-                properties: makeFalseResponse("#/components/schemas/guide", 400, 'false')
+                properties: makeFalseResponse("#/components/schemas/sign", 400, 'false')
                 }
               }
             }
@@ -41,4 +41,4 @@ const guidePost =  {
       }
     }
 
-export default guidePost;
+export default createUser;

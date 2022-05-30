@@ -2,12 +2,12 @@ import { Request, Response } from "express"
 import { guideContentDelete, guideContentGet, guideContentPost, guideContentUpdate } from "../../services/guide/guideContent"
 
 export const contentGet = async (req : Request, res : Response) => {
-    const response = await guideContentGet()
+    const response = await guideContentGet(req.params.id)
     res.send(response)
 } 
 
 export const contentPost = async(req : Request, res : Response) => {
-    const response = await guideContentPost(req.body, req.body.imgs, req.body.courses)
+    const response = await guideContentPost( req.body, req.body.imgs, req.body.courses, {decodedUser : req.decodedUser!.id})
     res.send(response);
 }
 

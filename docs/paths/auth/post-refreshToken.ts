@@ -2,27 +2,27 @@
 
 import { makeFalseResponse, makeResponse } from "../response";
 
-const guidePost =  {
+const recreateAccessToken =  {
       post: {
-        tags : ["Guide API"],
-        description: "Guide POST",
+        tags : ["User API"],
+        description: "User recreate accessToken",
         requestBody : {
             content : {
                 "application/json": {
                     schema: {
-                      $ref : "#/components/schemas/createGuide"
+                      $ref : "#/components/schemas/refreshToken"
                     }
                 }
             }
         },
         responses: {
           200: {          
-            description: "Guide Post Response Example",
+            description: "User recreate accessToken Response example",
             content: {
               "application/json": {
                 schema: {
                   type: "object",
-                  properties: makeResponse("#/components/schemas/guide")
+                  properties: makeResponse("#/components/schemas/accessToken")
                 }
               }
             }
@@ -32,7 +32,7 @@ const guidePost =  {
             content: {
               "application/json": {
                 schema: {
-                properties: makeFalseResponse("#/components/schemas/guide", 400, 'false')
+                properties: makeFalseResponse("#/components/schemas/sign", 400, 'false')
                 }
               }
             }
@@ -41,4 +41,4 @@ const guidePost =  {
       }
     }
 
-export default guidePost;
+export default recreateAccessToken;

@@ -1,7 +1,10 @@
-import { DataTypes, ForeignKey, Model } from 'sequelize'
+import { DataTypes, ForeignKey, HasManyAddAssociationMixin, HasManyAddAssociationsMixin, Model } from 'sequelize'
 import { Sequelize } from "sequelize/types";
 import Db from '../types/db'
 import {Guide as GuideKey, GuideDetails } from '../types/guide'
+import GuideContentModel from './guideContent';
+import GuideContentImg from './guideContentImg';
+import GuideCourseInfor from './guideCourseInfor';
 import User from './user';
 import viewModel from './view';
 
@@ -15,6 +18,13 @@ class Guide extends Model<GuideKey, GuideDetails> implements GuideKey {
   public likePoint !: number
   public disLikePoint !: number
   public userId!: ForeignKey<User['id']>  // foreignKey setting
+  
+  guide ? : Guide
+  GuideContent? : GuideContentModel[] 
+  GuideCotnentImg ? : GuideContentImg[]
+  GuideCourseInfor ? : GuideCourseInfor[]
+  
+  addGuideContents !: HasManyAddAssociationsMixin<GuideContentModel, number>;
 
   static initialize(sequelize : Sequelize) {
     return this.init({

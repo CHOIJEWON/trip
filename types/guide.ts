@@ -1,5 +1,7 @@
 import { ForeignKey } from "sequelize/types";
 import GuideModel from '../models/guide'
+import GuideContentModel from '../models/guideContent'
+
 import User from "../models/user";
 import { GuideImgDetails } from "./guideImg";
 
@@ -32,6 +34,8 @@ export interface GuideContentDetails {
     courseRecommend : string;
 
     guideId : ForeignKey<GuideModel['id']>;
+
+    userId : ForeignKey<User['id']>
 }
 
 export type Guide = GuideDetails & {

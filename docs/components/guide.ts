@@ -1,8 +1,7 @@
 const createGuide = {
     title: {
       type: "string", // data-type
-      description: "Todo's title", // desc
-      example: "Coding in JavaScript", // example of a titl
+      example: "SNS에서 유명한 파주 드라이브 명소", // example of a titl
       },
       mainImage: {
         type: "string", // data type
@@ -10,13 +9,20 @@ const createGuide = {
       },
       content : {
           type : "string",
-          example : "가이드 콘텐츠 작성"
+          example : "파주 드라이브 추천...."
       },
       category : {
           type : "string",
           description : "mon | cty 외에는 입력이 불가능함 ",
           example : "mon"
       },
+      contents: {
+        type : "array",
+        title : {
+          type : "string",
+          example : "본문"
+        }
+      }
   }
 
 // request, response object
@@ -26,6 +32,11 @@ const guideModel = {
       example: 3, // example of an id
     },
    ...createGuide,
+   userId : {
+    type : "string",
+    description : "User table 의 FK가 들어올 예정입니다",
+    example : "asdfe31331-asfdd3003"
+  },
     likePoint : {
         type : "number",
         description : "좋아요 수 입니다",

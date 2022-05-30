@@ -1,9 +1,19 @@
 const docs = {
     tags: [
       {
-        name: "가이드 API",
+        name: "Guide API",
       },
     ],
   };
   
-  export default docs;
+  const docs2 = {
+    tags: [
+      {
+        name: "User API",
+      },
+    ],
+  };
+  export default {
+    ...docs,
+    ...docs2
+  };

@@ -2,10 +2,10 @@
 
 import { makeFalseResponse, makeResponse } from "../response";
 
-const guidePut =  {
-      put: {
+const guideDel =  {
+      delete: {
         tags : ["Guide API"],
-        description: "Guide Put",
+        description: "Guide Delete",
         parameters: [
             {
                 name : "guideId",
@@ -17,29 +17,20 @@ const guidePut =  {
                 description: " 해당 가이드 id"
             }
         ],
-        requestBody : {
-            content : {
-                "application/json": {
-                    schema: {
-                      $ref : "#/components/schemas/createGuide"
-                    }
-                }
-            }
-        },
         responses: {
           200: {          
-            description: "Guide Put Response Example",
+            description: "Guide Delete Response Example",
             content: {
               "application/json": {
                 schema: {
                   type: "object",
-                  properties: makeResponse("#/components/schemas/createGuide")
+                  properties: makeResponse("#/components/schemas/guide")
                 }
               }
             }
           },
           400: {          
-            description: "error",
+            description: " error ",
             content: {
               "application/json": {
                 schema: {
@@ -52,5 +43,5 @@ const guidePut =  {
       }
     }
 
-export default guidePut;
+export default guideDel;
 

@@ -5,6 +5,7 @@ import {GuideContent as GuideContentKey, GuideContentDetails} from '../types/gui
 import GuideModel from './guide'
 import GuideContentImg from './guideContentImg';
 import GuideCourseInforModel from './guideCourseInfor';
+import User from './user';
 
 class GuideContent extends Model<GuideContentKey, GuideContentDetails> implements GuideContentKey  {
   title!: string;
@@ -16,13 +17,14 @@ class GuideContent extends Model<GuideContentKey, GuideContentDetails> implement
 
   addGuideContentImgs !: HasManyAddAssociationsMixin<GuideContentImg, number>;
   addGuideCourseInfors !: HasManyAddAssociationsMixin<GuideCourseInforModel, number>
-
+  
 
   getGuideContentImgs !: HasManyGetAssociationsMixin<GuideContentImg>;
 
   removeGuideCourseInfors !: HasManyRemoveAssociationsMixin<GuideCourseInforModel, number>;
   removeGuideContentImgs !: HasManyRemoveAssociationsMixin<GuideContentImg, number>;
   guideId!: ForeignKey<GuideModel['id']>  // foreignKey setting
+  userId !: ForeignKey<User['id']>
   id!: number;
   
   static initialize(sequelize : Sequelize) {
@@ -66,9 +68,10 @@ class GuideContent extends Model<GuideContentKey, GuideContentDetails> implement
    db.GuideContent.belongsTo(db.Guide, {
      foreignKey : {
        name : 'guideId'
-     }
-   });
-
+     }})
+    db.GuideContent.belongsTo(db.User,{
+      foreignKey : 'userId'
+    })
   }
 };
 

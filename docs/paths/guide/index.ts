@@ -1,3 +1,4 @@
+import guideDel from './delete-guide';
 import guideGetDetail from './get-guide';
 import guideGet from './get-guides'
 import guidePost from './post-guide';
@@ -11,6 +12,7 @@ const guide = {
     '/guide/{guideId}' : {
         ...guideGetDetail,
         ...guidePut,
+        ...guideDel,
     },
 }
 

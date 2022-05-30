@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { createGuidePost, deleteGuidePost, getGuideList, guide, updateGuidePost } from "../../services/guide/guide";
+import { createGuidePost, deleteGuide, getGuideList, guide, updateGuidePost } from "../../services/guide/guide";
 
 export const getGuide  = async(req : Request , res : Response) => {
     const guide = await getGuideList();
@@ -12,7 +12,7 @@ export const guideOne = async(req : Request , res : Response) => {
 }
 
 export const postGuide =  async (req : Request, res : Response) => {
-    const guideCreate = await createGuidePost(req.body, {decodedUser : req.decodedUser!.id})
+    const guideCreate = await createGuidePost(req.body, {decodedUser : req.decodedUser!.id}, req.body.contents, req.body.imgs, req.body.courses)
     res.send(guideCreate)
 };
 
@@ -23,6 +23,6 @@ export const updateGuide = async (req : Request, res : Response) => {
 }
 
 export const delGuide = async(req : Request, res : Response) => { 
-    const response = await deleteGuidePost(req.params.id)
+    const response = await deleteGuide(req.params.id)
     res.send(response)
 }

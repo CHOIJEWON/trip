@@ -6,12 +6,14 @@ import GuideCourseInforModel from "../../models/guideCourseInfor"
 import { GuideContentDetails, GuideContent as GuideContentKey} from "../../types/guide"
 import { GuideImgMainDetails } from "../../types/guideImg"
 import { GuideContentImgKey } from "../../types/response/guideContentImg"
+import { decodedUser } from "../../types/response/user"
 import ResponseGenerator from "../../utils/response"
 
 
 
-export const guideContentGet = async() => {
-    const guideContentFindAll = await GuideContentModel.findAll({
+export const guideContentGet = async(key : string) => {
+    const guideContentFindOne = await GuideContentModel.findAll({
+        where : { guideId : key },
         include : [
             {
             model : GuideContentImgModel
@@ -21,15 +23,15 @@ export const guideContentGet = async() => {
         }
     ]
     })
-    console.log('guideContentGet')
-    return ResponseGenerator.genSuccess<GuideContentImgKey[]>(guideContentFindAll) 
+    return ResponseGenerator.genSuccess<GuideContentImgKey[]>(guideContentFindOne) 
 }
 
-export const guideContentPost = async(data : GuideContentDetails, dataImg : GuideContentImgModel[], dataCourse : GuideCourseInforModel[]) => {
-    
-    console.log(data, dataImg, dataCourse)
+export const guideContentPost = async( data : GuideContentDetails , dataImg : GuideContentImgModel[] , dataCourse : GuideCourseInforModel[], user : decodedUser) => {
     // GuideContentPost
-    const GuideContentPost = await GuideContentModel.create(data);
+    const GuideContentPost = await GuideContentModel.create({
+        ...data,
+        userId : user.decodedUser
+    });
 
     // GuideImg bulkCreate 
     const GuideContentImgPost = await GuideContentImgModel.bulkCreate(dataImg);
@@ -38,7 +40,6 @@ export const guideContentPost = async(data : GuideContentDetails, dataImg : Guid
     // GuideCourseInfor bulkCreate
     const guideCourseInforPost = await GuideCourseInforModel.bulkCreate(dataCourse)
     await GuideContentPost.addGuideCourseInfors(guideCourseInforPost)
-    
     
    
 
