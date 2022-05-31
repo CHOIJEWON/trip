@@ -9,7 +9,8 @@ export interface GuideCourseInforDetails {
   title : string;
   category : string;
   sequence : number;
-  visitTime : number;
+  visitTime : string;
+  takeTime : string;
   guideContentId : ForeignKey<GuideContentModel['id']>;
 }
 

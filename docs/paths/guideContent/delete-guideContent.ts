@@ -2,38 +2,29 @@
 
 import { makeFalseResponse, makeResponse } from "../response";
 
-const guidePut =  {
-      put: {
-        tags : ["Guide API"],
-        description: "Guide Put",
+const guideContentDel =  {
+      delete: {
+        tags : ["GuideContent API"],
+        description: "GuideContent Delete",
         parameters: [
             {
-                name : "guideId",
+                name : "guideContentId",
                 in : "path",
                 schema: {
                     $ref : '#/components/schemas/id'
                 },
                 required : true,
-                description: " 해당 가이드 id"
+                description: " 해당 GuideContent id"
             }
         ],
-        requestBody : {
-            content : {
-                "application/json": {
-                    schema: {
-                      $ref : "#/components/schemas/guidePut"
-                    }
-                }
-            }
-        },
         responses: {
           200: {          
-            description: "Guide Put Response Example",
+            description: "GuideContent Delete Response Example",
             content: {
               "application/json": {
                 schema: {
                   type: "object",
-                  properties: makeResponse("#/components/schemas/guidePut")
+                  properties: makeResponse("#/components/schemas/createGuideContent")
                 }
               }
             }
@@ -52,5 +43,5 @@ const guidePut =  {
       }
     }
 
-export default guidePut;
+export default guideContentDel;
 

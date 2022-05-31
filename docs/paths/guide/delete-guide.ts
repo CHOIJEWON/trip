@@ -24,7 +24,7 @@ const guideDel =  {
               "application/json": {
                 schema: {
                   type: "object",
-                  properties: makeResponse("#/components/schemas/guide")
+                  properties: makeResponse("#/components/schemas/createGuide")
                 }
               }
             }

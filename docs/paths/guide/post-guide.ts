@@ -10,7 +10,7 @@ const guidePost =  {
             content : {
                 "application/json": {
                     schema: {
-                      $ref : "#/components/schemas/createGuide"
+                      $ref : "#/components/schemas/createGuide2"
                     }
                 }
             }

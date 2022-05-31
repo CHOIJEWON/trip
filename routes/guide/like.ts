@@ -1,19 +1,27 @@
 import {Router} from 'express';
 import { verifyToken } from '../../middlewares/user';
 import { disLike, Like } from '../../controllers/guide/like';
+import { commentLike } from '../../controllers/guide/commentLike';
+
 
 const router = Router();
 
 router.post(
-    '/:id/like',
+    '/:guideId/like',
     verifyToken,
     Like,
 )
 
 router.post(
-    '/:id/disLike',
+    '/:guideId/disLike',
     verifyToken,
     disLike,
+)
+
+router.post(
+    '/review/:reviewId/like',
+    verifyToken,
+    commentLike,
 )
 
 export default router;

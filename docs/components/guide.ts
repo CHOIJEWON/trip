@@ -1,4 +1,5 @@
-const createGuide = {
+
+const guidePut = {
     title: {
       type: "string", // data-type
       example: "SNS에서 유명한 파주 드라이브 명소", // example of a titl
@@ -18,11 +19,19 @@ const createGuide = {
       },
       contents: {
         type : "array",
-        title : {
-          type : "string",
-          example : "본문"
+        itmes : {
+          $ref : ""
         }
       }
+  }
+
+  const guidePost = {
+    ...guidePut,
+    contents : {
+      items : {
+        $ref : "#/components/schemas/createGuideContent"
+      }
+    }
   }
 
 // request, response object
@@ -31,7 +40,7 @@ const guideModel = {
       type: "number", // data-type
       example: 3, // example of an id
     },
-   ...createGuide,
+   ...guidePut,
    userId : {
     type : "string",
     description : "User table 의 FK가 들어올 예정입니다",
@@ -55,10 +64,14 @@ const guideModel = {
       type: "object", // data type
       properties: guideModel
     },
-    createGuide: {
+    guidePut: {
       type: "object", // data type
-      properties: createGuide
+      properties: guidePut
     },
+    createGuide : {
+      type : "object", // data type
+      properties: guidePost
+    }
   }
   
   export default guideSchemas

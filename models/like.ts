@@ -36,6 +36,12 @@ class Like extends Model {
       db.Like.belongsTo(db.Guide, {
         foreignKey : 'guideId',
       })
+      db.Like.belongsTo(db.Comment,{
+        foreignKey : 'commentId',
+      })
+      db.Like.belongsTo(db.Review,{
+        foreignKey : 'reviewId',
+      })
   }
 };
 

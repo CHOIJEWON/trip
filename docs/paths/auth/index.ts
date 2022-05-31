@@ -3,13 +3,13 @@ import userSignIn from "./post-signIn";
 import createUser from "./post-signUp";
 
 const auth = {
-    '/auth/signUp' : {
+    '/guide/signUp' : {
         ...createUser
     },
-    '/auth/signIn' : {
+    '/guide/signIn' : {
         ...userSignIn
     },
-    '/auth/token/refresh' : {
+    '/guide/token/refresh' : {
         ...recreateAccessToken
     }
 }

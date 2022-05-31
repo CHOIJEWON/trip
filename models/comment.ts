@@ -14,6 +14,16 @@ class Comment extends Model {
         type : DataTypes.STRING(),
         allowNull : false,
       },
+      liekPoint : {
+        type : DataTypes.INTEGER(),
+        defaultValue : 0,
+        allowNull : false,
+      },
+      disLikePoint : {
+        type : DataTypes.INTEGER(),
+        defaultValue : 0,
+        allowNull : false,
+      }
     }, {
       sequelize,
       timestamps: true,
@@ -36,6 +46,9 @@ class Comment extends Model {
       db.Comment.hasMany(db.Comment, {
         as : 'Recomment',
         foreignKey : 'commentId',
+      })
+      db.Comment.hasMany(db.Like,{
+        foreignKey : 'commentId'
       })
   }
 };

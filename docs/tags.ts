@@ -13,7 +13,16 @@ const docs = {
       },
     ],
   };
+
+  const docs3 = {
+    tags : [
+      {
+        name : "GuideContent API"
+      }
+    ]
+  }
   export default {
     ...docs,
-    ...docs2
+    ...docs2,
+    ...docs3
   };

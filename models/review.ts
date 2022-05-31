@@ -13,6 +13,16 @@ class Review extends Model {
           type : DataTypes.STRING(),
           allowNull : false,
       },
+      liekPoint : {
+        type : DataTypes.INTEGER(),
+        defaultValue : 0,
+        allowNull : false,
+      },
+      disLikePoint : {
+        type : DataTypes.INTEGER(),
+        defaultValue : 0,
+        allowNull : false,
+      }
     }, {
       sequelize,
       timestamps: true,
@@ -34,6 +44,9 @@ class Review extends Model {
       })
       db.Review.hasMany(db.Comment, {        
           foreignKey: 'reviewId'
+      })
+      db.Review.hasMany(db.Like, {
+        foreignKey: 'reviewId'
       })
   }
 };

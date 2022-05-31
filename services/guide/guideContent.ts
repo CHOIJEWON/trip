@@ -38,8 +38,8 @@ export const guideContentPost = async( data : GuideContentDetails , dataImg : Gu
     await GuideContentPost.addGuideContentImgs(GuideContentImgPost);
 
     // GuideCourseInfor bulkCreate
-    const guideCourseInforPost = await GuideCourseInforModel.bulkCreate(dataCourse)
-    await GuideContentPost.addGuideCourseInfors(guideCourseInforPost)
+    const GuideCourseInforPost = await GuideCourseInforModel.bulkCreate(dataCourse)
+    await GuideContentPost.addGuideCourseInfors(GuideCourseInforPost)
     
    
 

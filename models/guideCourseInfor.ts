@@ -12,7 +12,8 @@ class GuideCourseInfor extends Model<GuideCourseInforKey, GuideCourseInforDetail
   title !: string;
   category !: string;
   sequence !: number;
-  visitTime !: number;
+  visitTime !: string;
+  takeTime !: string
   guideContentId !: ForeignKey<GuideContentModel['id']>
 
   static initialize(sequelize : Sequelize,) {
@@ -43,9 +44,14 @@ class GuideCourseInfor extends Model<GuideCourseInforKey, GuideCourseInforDetail
           allowNull : false,
       }, 
       visitTime : {
-          type : DataTypes.INTEGER(),
+          type : DataTypes.STRING(),
           allowNull : false,
+      },
+      takeTime : {
+        type : DataTypes.STRING(),
+        allowNull : false,
       }
+
     }, {
       sequelize,
       timestamps: true,
