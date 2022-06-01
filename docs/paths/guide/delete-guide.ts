@@ -5,7 +5,7 @@ import { makeFalseResponse, makeResponse } from "../response";
 const guideDel =  {
       delete: {
         tags : ["Guide API"],
-        description: "Guide Delete",
+        description: "Guide Delete / 로그인이 필요합니다 / 한 guide에 속한 guideContent , imgs , courseInfor 데이터도 전부 삭제합니다",
         parameters: [
             {
                 name : "guideId",

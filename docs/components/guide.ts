@@ -17,12 +17,6 @@ const guidePut = {
           description : "mon | cty 외에는 입력이 불가능함 ",
           example : "mon"
       },
-      contents: {
-        type : "array",
-        itmes : {
-          $ref : ""
-        }
-      }
   }
 
   const guidePost = {

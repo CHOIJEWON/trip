@@ -2,38 +2,29 @@
 
 import { makeFalseResponse, makeResponse } from "../response";
 
-const guidePut =  {
-      put: {
-        tags : ["Guide API"],
-        description: "Guide Put / 로그인이 필요합니다",
+const getComment =  {
+      get: {
+        tags : ["Comment API"],
+        description: "Review Comment / 로그인이 필요합니다 / recomment의 데이터도 해당 API에서 조회합니다",
         parameters: [
             {
-                name : "guideId",
+                name : "commentId",
                 in : "path",
                 schema: {
                     $ref : '#/components/schemas/id'
                 },
                 required : true,
-                description: " 해당 가이드 id"
+                description: " 해당 commet id"
             }
         ],
-        requestBody : {
-            content : {
-                "application/json": {
-                    schema: {
-                      $ref : "#/components/schemas/guidePut"
-                    }
-                }
-            }
-        },
         responses: {
           200: {          
-            description: "Guide Put Response Example",
+            description: "get comment with recomment",
             content: {
               "application/json": {
                 schema: {
                   type: "object",
-                  properties: makeResponse("#/components/schemas/guidePut")
+                  properties: makeResponse("#/components/schemas/commentResponse")
                 }
               }
             }
@@ -52,5 +43,5 @@ const guidePut =  {
       }
     }
 
-export default guidePut;
+export default getComment;
 

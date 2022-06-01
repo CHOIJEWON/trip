@@ -13,7 +13,7 @@ class Review extends Model {
           type : DataTypes.STRING(),
           allowNull : false,
       },
-      liekPoint : {
+      likePoint : {
         type : DataTypes.INTEGER(),
         defaultValue : 0,
         allowNull : false,
@@ -44,9 +44,6 @@ class Review extends Model {
       })
       db.Review.hasMany(db.Comment, {        
           foreignKey: 'reviewId'
-      })
-      db.Review.hasMany(db.Like, {
-        foreignKey: 'reviewId'
       })
   }
 };

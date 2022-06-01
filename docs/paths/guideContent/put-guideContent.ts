@@ -5,7 +5,7 @@ import { makeFalseResponse, makeResponse } from "../response";
 const guideContentPut =  {
       put: {
         tags : ["GuideContent API"],
-        description: "GuideContent Put",
+        description: "GuideContent Put / 로그인이 필요합니다",
         parameters: [
             {
                 name : "guideContentId",

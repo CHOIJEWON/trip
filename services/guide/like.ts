@@ -24,7 +24,6 @@ export const likefunction = async( key : string, user : decodedUser) => {
         } else {
             if( like.isLike === true){
                 await like.destroy()
-
                 guide.decrement('likePoint', { by : 1 })
                 return ResponseGenerator.genSuccess<LikeModel>(like)
             } else {

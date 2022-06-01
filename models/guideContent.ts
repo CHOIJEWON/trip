@@ -11,22 +11,14 @@ class GuideContent extends Model<GuideContentKey, GuideContentDetails> implement
   title!: string;
   content!: string;
   courseRecommend!: string;
-  
+  guideId!: ForeignKey<GuideModel['id']>  // foreignKey setting
+  userId!: ForeignKey<User['id']>
+  id!: number;
+  addGuideContentImgs !: HasManyAddAssociationsMixin<GuideContentImg, number>;
+  addGuideCourseInfors !: HasManyAddAssociationsMixin<GuideCourseInforModel, number>
   GuideContentImgs?: GuideContentImg[];
   GuideCourseInfors?: GuideCourseInforModel[];
 
-  addGuideContentImgs !: HasManyAddAssociationsMixin<GuideContentImg, number>;
-  addGuideCourseInfors !: HasManyAddAssociationsMixin<GuideCourseInforModel, number>
-  
-
-  getGuideContentImgs !: HasManyGetAssociationsMixin<GuideContentImg>;
-
-  removeGuideCourseInfors !: HasManyRemoveAssociationsMixin<GuideCourseInforModel, number>;
-  removeGuideContentImgs !: HasManyRemoveAssociationsMixin<GuideContentImg, number>;
-  guideId!: ForeignKey<GuideModel['id']>  // foreignKey setting
-  userId !: ForeignKey<User['id']>
-  id!: number;
-  
   static initialize(sequelize : Sequelize) {
     return this.init({
       id: {

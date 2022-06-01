@@ -33,17 +33,14 @@ export const guide = async(key : string) => {
     }
 }
 
-export const createGuidePost = async(
-    data : Guide, user : decodedUser, dataContent : GuideContentModel[],
-    dataImg : GuideContentImgModel[], dataCours : GuideCourseInforModel[]
-    ) => { const guideCreate = await Guide.create({
+export const createGuidePost = async(data : Guide, user : decodedUser, dataContent : GuideContentModel[], dataImg : GuideContentImgModel[], dataCours : GuideCourseInforModel[]) => {
+    const guideCreate = await Guide.create({
         ...data,
         userId : user.decodedUser
     })
     await viewModel.create({ guideId : guideCreate.id })
     const guideContent = await GuideContentModel.bulkCreate(dataContent)
     await guideCreate.addGuideContents(guideContent)
-
     for(let x of guideContent) {
         const img = await GuideContentImgModel.bulkCreate(dataImg)
         await x.addGuideContentImgs(img)

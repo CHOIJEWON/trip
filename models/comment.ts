@@ -47,9 +47,9 @@ class Comment extends Model {
         as : 'Recomment',
         foreignKey : 'commentId',
       })
-      db.Comment.hasMany(db.Like,{
-        foreignKey : 'commentId'
-      })
+      // db.Comment.hasMany(db.Like,{
+      //   foreignKey : 'commentId'
+      // })
   }
 };
 

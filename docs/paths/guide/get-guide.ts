@@ -5,7 +5,7 @@ import { makeFalseResponse, makeResponse } from "../response";
 const guideGetDetail =  {
       get: {
         tags : ["Guide API"],
-        description: "Guide findOne",
+        description: "Guide findOne / guideContent, IMG, courseInfor 등은 현재 API에서 전부 조회합니다",
         parameters: [
             {
                 name : "guideId",

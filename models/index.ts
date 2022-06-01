@@ -1,4 +1,3 @@
-import {config} from '../config/config'
 import { Sequelize } from 'sequelize';
 import City from './city';
 import Guide from './guide'
@@ -10,6 +9,11 @@ import Review from './review';
 import Comment from './comment'
 import View from './view';
 import Like from './like';
+import * as dotenv from 'dotenv';
+import { config } from '../config/config';
+dotenv.config();
+
+
 
 const sequelize = new Sequelize(
   config.development.database,

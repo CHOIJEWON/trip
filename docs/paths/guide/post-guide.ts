@@ -5,12 +5,12 @@ import { makeFalseResponse, makeResponse } from "../response";
 const guidePost =  {
       post: {
         tags : ["Guide API"],
-        description: "Guide POST",
+        description: "Guide POST / 로그인이 필요합니다 / GuideContent / Img / CourseInfor의 정보를 일괄 저장합니다",
         requestBody : {
             content : {
                 "application/json": {
                     schema: {
-                      $ref : "#/components/schemas/createGuide2"
+                      $ref : "#/components/schemas/createGuide"
                     }
                 }
             }
@@ -22,7 +22,7 @@ const guidePost =  {
               "application/json": {
                 schema: {
                   type: "object",
-                  properties: makeResponse("#/components/schemas/guide")
+                  properties: makeResponse("#/components/schemas/createGuide")
                 }
               }
             }
