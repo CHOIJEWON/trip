@@ -113,6 +113,18 @@ JWT_ACCESSTIME = accessToken 유효 시간 작성
 JWT_REFRESHTIME = refreshToken 유효 시간 작성
 ````
 
+````
+npx npm start
+````
+
+# Swagger API-docs가 지원됩니다
+
+URL : localhost:3000/api-docs
+
+
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/105709970/171571040-7058bdfc-6dfd-4934-ac04-1c029000ada5.png">
+
+
 # ⚒️ 사용된 Tool
 ````
 BackEnd : NodeJs, TypeScript
