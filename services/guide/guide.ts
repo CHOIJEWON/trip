@@ -42,6 +42,7 @@ export const createGuidePost = async(data : Guide, user : decodedUser, dataConte
     const guideContent = await GuideContentModel.bulkCreate(dataContent)
     await guideCreate.addGuideContents(guideContent)
     for(let x of guideContent) {
+        x.update({ userId : guideCreate.userId})
         const img = await GuideContentImgModel.bulkCreate(dataImg)
         await x.addGuideContentImgs(img)
         const infor = await GuideCourseInforModel.bulkCreate(dataCours)
@@ -58,9 +59,9 @@ export const createGuidePost = async(data : Guide, user : decodedUser, dataConte
  
 }
 
-export const updateGuidePost = async(key :string, data : GuideDetails) => { 
+export const update = async(key :string, data : GuideDetails) => { 
     const guideKeyFind : Guide | null = await Guide.findOne({
-        where : { id : key}
+        where : { id : key } 
     })
     if(guideKeyFind !== null){
         const response = await guideKeyFind.update(data)

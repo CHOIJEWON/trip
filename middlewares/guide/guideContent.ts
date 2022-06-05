@@ -1,6 +1,5 @@
 import { body, param, validationResult } from "express-validator";
 import GuideContent from "../../models/guideContent";
-import GuideContentImg from "../../models/guideContentImg";
 
 export default class GuideContentValidator {
     static valGuideContentBlankData(){
@@ -40,7 +39,5 @@ export default class GuideContentValidator {
             });
         });
     };
-
-    
 }
 

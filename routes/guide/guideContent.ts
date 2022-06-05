@@ -3,6 +3,8 @@ import { contentDel, contentGet, contentPost, contentPut } from '../../controlle
 import GuideContentValidator from '../../middlewares/guide/guideContent';
 import { errorhandler } from '../../middlewares/errorhandler';
 import { verifyToken } from '../../middlewares/user';
+import { catchGuideContentMe } from '../../middlewares/common';
+import { valAdmin } from '../../middlewares/user/role';
 
 const router = Router();
 
@@ -26,6 +28,8 @@ router.get(
     GuideContentValidator.valGuideContentExist(), 
     errorhandler,
     verifyToken,
+    catchGuideContentMe,
+    valAdmin,
     contentPut
     );
     
@@ -34,7 +38,8 @@ router.get(
     '/content/:id', 
     GuideContentValidator.valGuideContentExist(), 
     errorhandler,
-    verifyToken,
+    catchGuideContentMe,
+    valAdmin,
     contentDel
     );
 
