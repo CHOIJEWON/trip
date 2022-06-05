@@ -1,6 +1,5 @@
-import { DataTypes, ForeignKey, Model } from 'sequelize'
+import { DataTypes,  Model } from 'sequelize'
 import { Sequelize } from "sequelize/types";
-import { cityDetails, city as cityKey } from '../types/city';
 import Db from '../types/db'
 
 class City extends Model{

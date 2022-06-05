@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import { contentDel, contentGet, contentPost, contentPut } from '../../controllers/guide/guidecontent';
+import { contentDel, contentGet, contentPost, contentPut } from '../../controllers/guide/guideContent';
 import GuideContentValidator from '../../middlewares/guide/guideContent';
 import { errorhandler } from '../../middlewares/errorhandler';
 import { verifyToken } from '../../middlewares/user';

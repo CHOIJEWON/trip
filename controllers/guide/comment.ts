@@ -1,8 +1,6 @@
 import { Request, Response } from 'express'
-import commentModel from '../../models/comment'
-import User from '../../models/user'
 import { deleteCommet, getAllComment, postingComment, updatingComment } from '../../services/guide/comment'
-import ResponseGenerator from '../../utils/response'
+
 
 export const getComments = async(req: Request, res: Response) => {
     const response = await getAllComment(req.params.reviewId)

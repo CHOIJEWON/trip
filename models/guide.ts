@@ -1,4 +1,4 @@
-import { DataTypes, ForeignKey, HasManyAddAssociationMixin, HasManyAddAssociationsMixin, Model } from 'sequelize'
+import { DataTypes, ForeignKey, HasManyAddAssociationsMixin, Model } from 'sequelize'
 import { Sequelize } from "sequelize/types";
 import Db from '../types/db'
 import {Guide as GuideKey, GuideDetails } from '../types/guide'
