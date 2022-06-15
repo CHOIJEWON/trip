@@ -38,7 +38,7 @@ router.put(
     GuideValidator.valIdExist(),
     GuideValidator.valCategory(),
     errorhandler,
-    catchGuideMe,
+    catchGuideMe || valAdmin,
     updateGuide,
     );
 
@@ -47,8 +47,7 @@ router.delete(
     verifyToken,
     GuideValidator.valIdExist(),
     errorhandler,
-    catchGuideMe,
-    valAdmin,
+    catchGuideMe || valAdmin,
     delGuide,
     )
 

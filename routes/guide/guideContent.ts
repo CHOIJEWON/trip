@@ -29,18 +29,17 @@ router.get(
     verifyToken,
     GuideContentValidator.valGuideContentExist(), 
     errorhandler,
-    catchGuideContentMe,
-    valAdmin,
+    catchGuideContentMe || valAdmin,
     contentPut
     );
     
     
     router.delete(
-    '/content/:id', 
+    '/content/:id',
+    verifyToken, 
     GuideContentValidator.valGuideContentExist(), 
     errorhandler,
-    catchGuideContentMe,
-    valAdmin,
+    catchGuideContentMe || valAdmin,
     contentDel
     );
 
