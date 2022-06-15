@@ -25,26 +25,26 @@ router.get(
 router.post(
     '/',
     verifyToken,
+    valWriter || valAdmin,
     GuideValidator.valTitleUnique(),
     GuideValidator.valCategory(),
-    valAdmin,
-    valWriter,
     errorhandler,
     postGuide,
     );
 
 router.put(
-    '/:id', 
+    '/:id',
+    verifyToken, 
     GuideValidator.valIdExist(),
     GuideValidator.valCategory(),
     errorhandler,
     catchGuideMe,
-    valAdmin,
     updateGuide,
     );
 
 router.delete(
     '/:id', 
+    verifyToken,
     GuideValidator.valIdExist(),
     errorhandler,
     catchGuideMe,

@@ -4,7 +4,7 @@ import GuideContentValidator from '../../middlewares/guide/guideContent';
 import { errorhandler } from '../../middlewares/errorhandler';
 import { verifyToken } from '../../middlewares/user';
 import { catchGuideContentMe } from '../../middlewares/common';
-import { valAdmin } from '../../middlewares/user/role';
+import { valAdmin, valWriter } from '../../middlewares/user/role';
 
 const router = Router();
 
@@ -16,18 +16,19 @@ router.get(
     );
     
     router.post('/content/:id', 
+    verifyToken,
+    valWriter || valAdmin,
     GuideContentValidator.valGuideContentTitleBlank(),
     GuideContentValidator.valGuideContentContentBlank(),
     errorhandler,
-    verifyToken,
     contentPost
     );
     
     router.put(
     '/content/:id', 
+    verifyToken,
     GuideContentValidator.valGuideContentExist(), 
     errorhandler,
-    verifyToken,
     catchGuideContentMe,
     valAdmin,
     contentPut

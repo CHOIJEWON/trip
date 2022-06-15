@@ -17,6 +17,11 @@ export interface UserSign{
     email : string;
 }
 
+export interface UserSignIn{
+    userId : string;
+    password : string;
+}
+
 export type UserTokenDetails = UserAccessTokenDetails & { refreshToken : string }
 
 export type UserSignUpDetails = Userkey & { nick : string; role : string;}
