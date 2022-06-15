@@ -6,6 +6,8 @@ class User extends Model {
   id!: string;
   nick !: string;
   role !: string;
+  email !: string;
+  emailValidate !: boolean;
   userId !: string;
   password !: string;
   
@@ -22,6 +24,15 @@ class User extends Model {
       nick : {
           type : DataTypes.STRING(),
           allowNull : false,
+      },
+      email : {
+        type : DataTypes.STRING(),
+        allowNull : false
+      },
+      emailValidate : {
+        type : DataTypes.BOOLEAN(),
+        defaultValue: false,
+        allowNull : false
       },
       userId : {
           type : DataTypes.STRING(),

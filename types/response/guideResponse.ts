@@ -1,14 +1,14 @@
 import GuideContentModel from "../../models/guideContent";
 import GuideContentImgModel from "../../models/guideContentImg";
 import GuideCourseInforModel from "../../models/guideCourseInfor";
-import { Guide } from "../guide";
+import { Guide, GuideDetails } from "../guide";
 
 
 
 
 export interface GuidePost { 
 
-  guide : Guide 
+  guide : GuideDetails
   
   GuideContent : GuideContentModel[]
 

@@ -5,10 +5,10 @@ import jwt from 'jsonwebtoken';
 import {v4 as uuid} from 'uuid';
 import { Role } from "../../types/role";
 import config from "../../config/auth";
-import { UserSignUpDetails, UserTokenDetails, UserAccessTokenDetails } from "../../types/response/user";
+import { UserSignUpDetails, UserTokenDetails, UserAccessTokenDetails, UserSign } from "../../types/response/user";
 
 
-export const userSignUp = async(data : User) => {
+export const userSignUp = async(data : UserSign) => {
     const exUser = await User.findOne({
         where : { userId : data.userId },
     })
@@ -29,7 +29,7 @@ export const userSignUp = async(data : User) => {
 } 
 
 
-export const userSignIn = async(data : User) => {
+export const userSignIn = async(data : UserSign ) => {
     const exUser = await User.findOne({
         where : { userId : data.userId },
     })

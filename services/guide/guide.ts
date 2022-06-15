@@ -33,7 +33,7 @@ export const guide = async(key : string) => {
     }
 }
 
-export const createGuidePost = async(data : Guide, user : decodedUser, dataContent : GuideContentModel[], dataImg : GuideContentImgModel[], dataCours : GuideCourseInforModel[]) => {
+export const createGuidePost = async(data : GuideDetails, user : decodedUser, dataContent : GuideContentModel[], dataImg : GuideContentImgModel[], dataCours : GuideCourseInforModel[]) => {
     const guideCreate = await Guide.create({
         ...data,
         userId : user.decodedUser
