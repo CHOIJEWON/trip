@@ -1,9 +1,7 @@
 import { ForeignKey } from "sequelize/types";
 import GuideModel from '../models/guide'
-import GuideContentModel from '../models/guideContent'
-
 import User from "../models/user";
-import { GuideImgDetails } from "./guideImg";
+
 
 export const ALL_GUIDE_CATEGORY = ['mon', 'cty'] as const;
 type GuideCategoryTuple = typeof ALL_GUIDE_CATEGORY;
@@ -44,5 +42,4 @@ export type Guide = GuideDetails & {
     disLikePoint : number;
 }
 
-export type GuideContent = GuideContentDetails & {id : number}
-
+export type GuideContent = GuideContentDetails & {id : number, }

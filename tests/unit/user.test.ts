@@ -1,4 +1,5 @@
 import app from '../../app'
+import { v4 as uuid } from 'uuid'
 import { userSignIn, userSignUp } from '../../services/user/user'
 import db from '../../models'
 const {sequelize} = db

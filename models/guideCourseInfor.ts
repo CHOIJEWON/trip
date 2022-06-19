@@ -65,9 +65,6 @@ class GuideCourseInfor extends Model<GuideCourseInforKey, GuideCourseInforDetail
   }
 
   static associate(db : Db) {
-    db.GuideCourseInfor.belongsTo(db.City, {
-      foreignKey : 'cityId'
-    });
     db.GuideCourseInfor.belongsTo(db.GuideContent, {
       foreignKey : 'guideContentId'
     })

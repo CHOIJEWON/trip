@@ -4,9 +4,8 @@ import GuideModel from '../../models/guide'
 import GuideContent from "../../models/guideContent";
 
 export interface GuideContentImg { 
-    title : string;
-    content : string;
-    courseRecommend : string;
+    imgURL : string;
+    guideContentId : ForeignKey<GuideContentModel['id']>;
 }
 
 

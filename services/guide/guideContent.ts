@@ -1,3 +1,5 @@
+
+import GuideContent from "../../models/guideContent"
 import GuideContentModel from "../../models/guideContent"
 import GuideContentImg from "../../models/guideContentImg"
 import GuideContentImgModel from "../../models/guideContentImg"
@@ -23,10 +25,10 @@ export const guideContentGet = async(key : string) => {
         }
     ]
     })
-    return ResponseGenerator.genSuccess<GuideContentImgKey[]>(guideContentFindOne) 
+    return ResponseGenerator.genSuccess<GuideContent[]>(guideContentFindOne) 
 }
 
-export const guideContentPost = async( data : GuideContentDetails , dataImg : GuideContentImgModel[] , dataCourse : GuideCourseInforModel[], user : decodedUser) => {
+export const guideContentPost = async( data : GuideContentKey , dataImg : GuideContentImgModel[] , dataCourse : GuideCourseInforModel[], user : decodedUser) => {
     // GuideContentPost
     const GuideContentPost = await GuideContentModel.create({
         ...data,

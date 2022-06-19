@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { createGuidePost, deleteGuide, getGuideList, guide, update} from "../../services/guide/guide";
+import { createGuidePost, deleteGuide, getGuideList, guideFindOne, update} from "../../services/guide/guide";
 
 export const getGuide  = async(req : Request , res : Response) => {
     const guide = await getGuideList();
@@ -7,7 +7,7 @@ export const getGuide  = async(req : Request , res : Response) => {
 }
 
 export const guideOne = async(req : Request , res : Response) => {
-    const response = await guide(req.params.id)
+    const response = await guideFindOne(req.params.id)
     res.send(response)
 }
 

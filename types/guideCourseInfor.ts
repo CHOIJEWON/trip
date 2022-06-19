@@ -1,9 +1,8 @@
 import { ForeignKey } from "sequelize/types";
-import cityModel from "../models/city";
-import GuideContentModel from "../models/guideContent"
+import GuideContent from "../models/guideContent";
 
 
-export interface GuideCourseInforDetails { 
+export interface GuideCourseInforDetails{
   latitude : string;
   longitude : string;
   title : string;
@@ -11,7 +10,7 @@ export interface GuideCourseInforDetails {
   sequence : number;
   visitTime : string;
   takeTime : string;
-  guideContentId : ForeignKey<GuideContentModel['id']>;
+  guideContentId : ForeignKey<GuideContent['id']>;
 }
 
 export type GuideCourseInforKey = GuideCourseInforDetails & { id : number }

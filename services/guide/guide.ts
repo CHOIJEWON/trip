@@ -3,7 +3,10 @@ import GuideContentModel from "../../models/guideContent";
 import GuideContentImgModel from "../../models/guideContentImg";
 import GuideCourseInforModel from "../../models/guideCourseInfor";
 import viewModel from "../../models/view";
-import { GuideDetails, Guide as GuideKey } from "../../types/guide";
+import { GuideDetails, Guide as GuideKey, GuideContentDetails } from "../../types/guide";
+import { GuideCourseInforDetails } from "../../types/guideCourseInfor";
+import { GuideContents, GuideCreate} from "../../types/inputType/guide";
+import { GuideContentImg } from "../../types/response/guideContentImg";
 import { GuidePost } from "../../types/response/guideResponse";
 import { decodedUser } from "../../types/response/user";
 import ResponseGenerator from "../../utils/response";
@@ -14,7 +17,7 @@ export const getGuideList = async() => {
     return ResponseGenerator.genSuccess<GuideKey[]>(guides)
 }
 
-export const guide = async(key : string) => {
+export const guideFindOne = async(key : string) => {
     const guide = await Guide.findOne({
         where : { id : key },
         include : [
@@ -33,7 +36,7 @@ export const guide = async(key : string) => {
     }
 }
 
-export const createGuidePost = async(data : GuideDetails, user : decodedUser, dataContent : GuideContentModel[], dataImg : GuideContentImgModel[], dataCours : GuideCourseInforModel[]) => {
+export const createGuidePost = async(data : GuideCreate, user : decodedUser, dataContent : GuideContentDetails[], dataImg : GuideContentImg[], dataCours : GuideCourseInforDetails[]) => {
     const guideCreate = await Guide.create({
         ...data,
         userId : user.decodedUser
@@ -59,7 +62,7 @@ export const createGuidePost = async(data : GuideDetails, user : decodedUser, da
  
 }
 
-export const update = async(key :string, data : GuideDetails) => { 
+export const update = async(key :string, data : GuideCreate) => { 
     const guideKeyFind : Guide | null = await Guide.findOne({
         where : { id : key } 
     })
@@ -97,6 +100,6 @@ export const deleteGuide = async(key : string) => {
         })
         return ResponseGenerator.genSuccess<Guide>(guide)
     } else {
-        return ResponseGenerator.genfalse(404, '존재하는 않는 게시물입니다')
+        return ResponseGenerator.genfalse(404, '존재하지 않는 게시물입니다')
     }
 }
