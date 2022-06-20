@@ -1,7 +1,7 @@
 import app from '../../app'
-import { v4 as uuid } from 'uuid'
 import { userSignIn, userSignUp } from '../../services/user/user'
 import db from '../../models'
+import { readySignUp } from '../readyToRun/user'
 const {sequelize} = db
 
 describe("User Unit Test", () => {
@@ -61,14 +61,12 @@ describe("User Unit Test", () => {
             })
             it('성공케이스', async() => {
                 // given
+                await readySignUp()
+                
                 const data = {
                     userId : '최제원',
-                    password : '1234',
-                    nick : '제원',
-                    email : 'alsrn6040@naver.com',
+                    password : '1234'
                 }
-
-                await userSignUp(data)
                 // whene
 
                 const result = await userSignIn(data)
@@ -80,16 +78,9 @@ describe("User Unit Test", () => {
             })
             it('존재하지 않는 유저', async() => {
                 // given
+                await readySignUp()
+
                 const data = {
-                    userId : '최제원',
-                    password : '1234',
-                    nick : '제원',
-                    email : 'alsrn6040@naver.com',
-                }
-
-                await userSignUp(data)
-
-                const newData = {
                     userId : '김제원',
                     password : '1234',
                     nick : '제원',
@@ -98,7 +89,7 @@ describe("User Unit Test", () => {
 
                 //whene
 
-                const result = await userSignIn(newData)
+                const result = await userSignIn(data)
 
                 //thene
 
@@ -109,16 +100,9 @@ describe("User Unit Test", () => {
 
             it('틀린 비밀번호', async() => {
                 // given
+                await readySignUp()
+
                 const data = {
-                    userId : '최제원',
-                    password : '1234',
-                    nick : '제원',
-                    email : 'alsrn6040@naver.com',
-                };
-
-                await userSignUp(data);
-
-                const newData = {
                     userId : '최제원',
                     password : '1234567',
                     nick : '제원',
@@ -127,7 +111,7 @@ describe("User Unit Test", () => {
 
                 //whene
 
-                const result = await userSignIn(newData);
+                const result = await userSignIn(data);
 
                 //thene
 

@@ -36,20 +36,43 @@ export const guideFindOne = async(key : string) => {
     }
 }
 
-export const createGuidePost = async(data : GuideCreate, user : decodedUser, dataContent : GuideContentDetails[], dataImg : GuideContentImg[], dataCours : GuideCourseInforDetails[]) => {
+export const createGuidePost = async(data : GuideCreate, user : decodedUser, dataContent : GuideContents[], dataImg : GuideContentImg[], dataCours : GuideCourseInforDetails[]) => {
     const guideCreate = await Guide.create({
         ...data,
         userId : user.decodedUser
     })
     await viewModel.create({ guideId : guideCreate.id })
-    const guideContent = await GuideContentModel.bulkCreate(dataContent)
+   
+    const dataContentWithId = [];
+    for(const content of dataContent) {
+        dataContentWithId.push({
+            ...content,
+            userId: user.decodedUser,
+            guideId: guideCreate.id
+        })
+    }
+
+    const guideContent = await GuideContentModel.bulkCreate(dataContentWithId)
     await guideCreate.addGuideContents(guideContent)
-    for(let x of guideContent) {
-        x.update({ userId : guideCreate.userId})
-        const img = await GuideContentImgModel.bulkCreate(dataImg)
-        await x.addGuideContentImgs(img)
-        const infor = await GuideCourseInforModel.bulkCreate(dataCours)
-        await x.addGuideCourseInfors(infor)
+    for(let oneGuideContent of guideContent) {
+        const imgWithId = []
+        const courseWithId = []
+        for(const img of dataImg){
+            imgWithId.push({
+                ...img,
+                guideContentId : oneGuideContent.id
+            })
+        }
+        for( const course of dataCours ){
+            courseWithId.push({
+                ...course,
+                guideContentId : oneGuideContent.id
+            })
+        }
+        const img = await GuideContentImgModel.bulkCreate(imgWithId)
+        await oneGuideContent.addGuideContentImgs(img)
+        const infor = await GuideCourseInforModel.bulkCreate(courseWithId)
+        await oneGuideContent.addGuideCourseInfors(infor)
         
         return ResponseGenerator.genSuccess<GuidePost>({ 
             guide : guideCreate, 

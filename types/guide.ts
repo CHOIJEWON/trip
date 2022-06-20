@@ -30,10 +30,6 @@ export interface GuideContentDetails {
     content : string;
 
     courseRecommend : string;
-
-    guideId : ForeignKey<GuideModel['id']>;
-
-    userId : ForeignKey<User['id']>
 }
 
 export type Guide = GuideDetails & {
@@ -42,4 +38,8 @@ export type Guide = GuideDetails & {
     disLikePoint : number;
 }
 
-export type GuideContent = GuideContentDetails & {id : number, }
+export type GuideContent = GuideContentDetails & {
+id : number, 
+guideId : ForeignKey<GuideModel['id']>;
+userId : ForeignKey<User['id']> 
+}

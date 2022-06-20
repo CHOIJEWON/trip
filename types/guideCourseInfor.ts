@@ -10,7 +10,6 @@ export interface GuideCourseInforDetails{
   sequence : number;
   visitTime : string;
   takeTime : string;
-  guideContentId : ForeignKey<GuideContent['id']>;
 }
 
-export type GuideCourseInforKey = GuideCourseInforDetails & { id : number }
+export type GuideCourseInforKey = GuideCourseInforDetails & { id : number, guideContentId : ForeignKey<GuideContent['id']>; }

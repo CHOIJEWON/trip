@@ -5,8 +5,10 @@ import GuideContent from "../../models/guideContent";
 
 export interface GuideContentImg { 
     imgURL : string;
-    guideContentId : ForeignKey<GuideContentModel['id']>;
 }
 
 
-export type GuideContentImgKey = GuideContentImg & { id : number }; 
+export type GuideContentImgKey = GuideContentImg & { 
+    id : number 
+    guideContentId : ForeignKey<GuideContentModel['id']>
+}; 

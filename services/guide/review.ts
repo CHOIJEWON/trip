@@ -1,7 +1,9 @@
 import { Op } from "sequelize/types"
 import commentModel from "../../models/comment"
+import Guide from "../../models/guide"
 import ReviewModel from "../../models/review"
 import { decodedUser, Userkey } from "../../types/response/user"
+import { reviewDetails } from "../../types/review"
 import ResponseGenerator from "../../utils/response"
 
 export const guideReviews = async(key : string) => {
@@ -12,19 +14,24 @@ export const guideReviews = async(key : string) => {
 }
 
 
-export const postingReviews = async(body : ReviewModel, key : string, user : decodedUser) => {
-    const review = await ReviewModel.create({
-        ...body,
-        guideId : key,
-        userId : user.decodedUser
-    })
-    return ResponseGenerator.genSuccess<ReviewModel>(review)
+export const postingReviews = async(body : reviewDetails, key : string, user : decodedUser) => {
+     const findGuide = await Guide.findOne({ where : { id : key } })
+    if(findGuide === null){
+        return ResponseGenerator.genfalse(404, '존재하지 않는 가이드입니다')
+    } else {
+        const review = await ReviewModel.create({
+            ...body,
+            guideId : key,
+            userId : user.decodedUser
+        })
+        return ResponseGenerator.genSuccess<ReviewModel>(review)
+    }
 }
 
-export const updatingReview = async(body : ReviewModel, key : string) => {
+export const updatingReview = async(body : reviewDetails, key : string) => {
     const findReview = await ReviewModel.findOne({ where : { id : key } })
     if(findReview === null) {
-        return ResponseGenerator.genfalse(404, '존재하지 않는 댓글입니다')
+        return ResponseGenerator.genfalse(404, '존재하지 않는 리뷰입니다')
     } else {
         const updateReview = await findReview.update(body)
         return ResponseGenerator.genSuccess<ReviewModel>(updateReview)
@@ -34,7 +41,7 @@ export const updatingReview = async(body : ReviewModel, key : string) => {
 export const deletingReview = async(key : string) => {
     const findReview = await ReviewModel.findOne({ where : { id : key } })
     if(findReview === null) {
-        ResponseGenerator.genfalse(404, '존재하지 않는 댓글입니다')
+        return ResponseGenerator.genfalse(404, '존재하지 않는 리뷰입니다')
     } else {
         await findReview.destroy()
         return ResponseGenerator.genSuccess<ReviewModel>(findReview)
