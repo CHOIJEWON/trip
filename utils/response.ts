@@ -12,7 +12,7 @@ export default class ResponseGenerator {
 
     static genfalse(status: number, message : string) { 
         const response = {
-            status,
+            status : status,
             message,
             data : null,
         }

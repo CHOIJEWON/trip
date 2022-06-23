@@ -3,12 +3,13 @@ import { userRefreshToken, userSignIn, userSignUp } from '../../services/user/us
 
 export const signUp = async(req : Request, res : Response) => {
     const signUp = await userSignUp(req.body)
-    res.send(signUp) 
+    res.send(signUp).status(signUp.status)
+    console.log(signUp)
 }
 
 export const signIn = async (req: Request, res: Response) =>{
     const signIn = await userSignIn(req.body)
-    res.send(signIn)
+    res.send(signIn).status(404)
 }   
 
 export const refreshToken = async (req : Request, res : Response) => {

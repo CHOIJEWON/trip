@@ -10,4 +10,5 @@ export const readyReviewCreate = async() => {
     }
 
     await postingReviews(data, '1', { decodedUser : exData})
+    return exData
 }

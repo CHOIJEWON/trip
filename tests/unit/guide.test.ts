@@ -16,7 +16,6 @@ describe('guide Unit Test', () => {
             beforeEach(async() => {
                 await sequelize.sync({ force : true })
             })
-
             it('[성공]가이드 글 쓰기(콘텐츠, 이미지, 코스 일괄 삽입)', async() => {
                 //given
                 const data : UserSign = {

@@ -7,8 +7,10 @@ import { readySignIn, readySignUp } from "./user"
 
 
 export const readyGuideWrite = async() => {
+    
     const sign = await readySignUp()
     await readySignIn()
+
     const guide : GuideCreate = {
         title : "post refactorin4567 입니다",
         mainImage : "http://www.travelnbike.com/news/photo/201903/77604_141293_4837.png",

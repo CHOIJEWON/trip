@@ -28,25 +28,26 @@ export const guideContentGet = async(key : string) => {
     return ResponseGenerator.genSuccess<GuideContent[]>(guideContentFindOne) 
 }
 
-export const guideContentPost = async( data : GuideContentKey , dataImg : GuideContentImgModel[] , dataCourse : GuideCourseInforModel[], user : decodedUser) => {
+export const guideContentPost = async( data : GuideContentDetails , dataImg : GuideContentImgModel[] , dataCourse : GuideCourseInforModel[], user : decodedUser) => {
     // GuideContentPost
-    const GuideContentPost = await GuideContentModel.create({
-        ...data,
-        userId : user.decodedUser
-    });
+    // const GuideContentPost = await GuideContentModel.create({
+    //     ...data,
+    //     userId : user.decodedUser
+    // });
 
-    // GuideImg bulkCreate 
-    const GuideContentImgPost = await GuideContentImgModel.bulkCreate(dataImg);
-    await GuideContentPost.addGuideContentImgs(GuideContentImgPost);
+    // // GuideImg bulkCreate 
+    // const GuideContentImgPost = await GuideContentImgModel.bulkCreate(dataImg);
+    // await GuideContentPost.addGuideContentImgs(GuideContentImgPost);
 
-    // GuideCourseInfor bulkCreate
-    const GuideCourseInforPost = await GuideCourseInforModel.bulkCreate(dataCourse)
-    await GuideContentPost.addGuideCourseInfors(GuideCourseInforPost)
+    // // GuideCourseInfor bulkCreate
+    // const GuideCourseInforPost = await GuideCourseInforModel.bulkCreate(dataCourse)
+    // await GuideContentPost.addGuideCourseInfors(GuideCourseInforPost)
     
    
 
     // return value
-    return ResponseGenerator.genSuccess<GuideContentModel>(GuideContentPost)
+    // return ResponseGenerator.genSuccess<GuideContentModel>(GuideContentPost)
+    return 1
 }
 
 export const guideContentUpdate = async( data : GuideContentDetails, key : string, dataImg : GuideImgMainDetails[], dataCourse : GuideCourseInforModel[] ) => {

@@ -1,6 +1,7 @@
 import app from '../../app'
 import { userSignIn, userSignUp } from '../../services/user/user'
 import db from '../../models'
+import request from 'supertest'
 import { readySignUp } from '../readyToRun/user'
 const {sequelize} = db
 

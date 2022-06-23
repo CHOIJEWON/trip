@@ -107,7 +107,7 @@ describe('review Unit Test', () => {
             //thene
             expect(result.status).toBe(404)
             expect(result.data).toBeNull()
-            expect(result.message).toBe('존재하지 않는 리뷰입니다')
+            expect(result.message).toBe('존재하지 않는 리뷰입니다')    
         })
       })
     });
